@@ -15,14 +15,14 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        // Явно указываем архитектуры, под которые собираем нативную библиотеку
         ndk {
-            abiFilters.add("arm64-v8a") // Твой Redmi Note 14 Pro использует эту архитектуру
+            abiFilters.add("arm64-v8a")
         }
 
         externalNativeBuild {
             cmake {
                 cppFlags("-std=c++17", "-O3", "-ffast-math")
+                arguments("-DANDROID_STL=c++_shared")
             }
         }
     }

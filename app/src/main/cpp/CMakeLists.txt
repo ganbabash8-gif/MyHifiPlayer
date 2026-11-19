@@ -11,4 +11,4 @@ add_library(myhifiplayer SHARED
 
 find_package(oboe REQUIRED CONFIG)
 
-target_link_libraries(myhifiplayer oboe log android)
+target_link_libraries(myhifiplayer oboe::oboe log android)
