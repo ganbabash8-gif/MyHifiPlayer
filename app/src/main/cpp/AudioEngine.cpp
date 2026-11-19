@@ -7,8 +7,9 @@
 
 bool AudioEngine::start() {
     oboe::AudioStreamBuilder builder;
+    builder.setBufferSizeInFrames(4096);
     builder.setDirection(oboe::Direction::Output)
-           ->setPerformanceMode(oboe::PerformanceMode::LowLatency)
+           ->setPerformanceMode(oboe::PerformanceMode::None)
            ->setSharingMode(oboe::SharingMode::Exclusive) // <--- НАШ СВЯТОЙ ГРААЛЬ
            ->setFormat(oboe::AudioFormat::Float)
            ->setChannelCount(oboe::ChannelCount::Stereo)
