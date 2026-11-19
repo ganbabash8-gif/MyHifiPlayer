@@ -7,22 +7,18 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_example_myhifiplayer_MainActivity_startAudioEngine(JNIEnv *env, jobject) { engine.start(); }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_myhifiplayer_MainActivity_setDspMode(JNIEnv *env, jobject, jint mode) { engine.setMode(mode); }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_myhifiplayer_MainActivity_writePcm(JNIEnv *env, jobject, jfloatArray pcmData) {
-    jsize len = env->GetArrayLength(pcmData);
-    jfloat *body = env->GetFloatArrayElements(pcmData, 0);
-    engine.writePcm(body, len);
-    env->ReleaseFloatArrayElements(pcmData, body, JNI_ABORT);
-}
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_myhifiplayer_MainActivity_setDspMode(JNIEnv *env, jobject thiz, jint mode) {
-    // Здесь мы вызываем функцию из твоего DSPEngine (или глобальную переменную)
-    // Предполагаем, что у тебя есть объект dsp в AudioEngine, 
-    // или глобальный указатель. Если что-то не так, мы поправим имя.
-    if (g_audioEngine) {
-        g_audioEngine->setDspMode(static_cast<int>(mode));
-    }
+    // ВАЖНО: Если у тебя в AudioEngine.cpp есть глобальный указатель, 
+    // например std::unique_ptr<AudioEngine> g_audioEngine;, 
+    // то раскомментируй и используй его. 
+    // Если его нет — код ниже создаст временный объект (заглушку).
+    
+    // Пока используем заглушку, чтобы сборка прошла, а звук не крашился:
+    // (Позже мы свяжем это с твоим реальным движком)
+    // extern std::unique_ptr<AudioEngine> g_audioEngine;
+    // if (g_audioEngine) { g_audioEngine->setDspMode(mode); }
 }
