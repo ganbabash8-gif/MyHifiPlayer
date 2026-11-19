@@ -88,7 +88,7 @@ object TestMaster {
             "PCM32" to ENC_PCM_32,
             "FLOAT" to AudioFormat.ENCODING_PCM_FLOAT
         )
-        val rates = listOf(44100, 48000, 88200, 96000, 176400, 192000, 352800, 384000)
+        val rates = listOf(44100, 48000, 88200, 96000, 176400, 192000)
         for ((name, enc) in encs) {
             val line = StringBuilder("$name: ")
             for (sr in rates) {
